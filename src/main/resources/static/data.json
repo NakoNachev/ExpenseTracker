@@ -5,6 +5,7 @@
     "expenseTypeName": "test"
   },
   "expenseAmount": 400,
+  "expenseIssueDate": "2020-10-05",
   "expenseDescription": "test2"
 },
   {
@@ -14,6 +15,7 @@
       "expenseTypeName": "test"
     },
     "expenseAmount": 400,
+    "expenseIssueDate": "2019-10-05",
     "expenseDescription": "test2"
   }
 ]

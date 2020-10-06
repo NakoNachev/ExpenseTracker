@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api")
@@ -21,6 +24,8 @@ public class MainController {
     @Autowired
     private ExpenseTypeService expenseTypeService;
 
+    private final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+    private final Calendar calendar = Calendar.getInstance();
 
     @GetMapping("/expenses")
     public List<Expense> returnExpenses() {
@@ -53,12 +58,16 @@ public class MainController {
 
 
     @GetMapping("/expenses/{year}")
-    public List<Expense> returnExpensesYear(@PathVariable("year") String year) {
-
+    public List<Expense> returnExpensesYear(@PathVariable("year") int year) {
+        List<Expense> output = new ArrayList<Expense>();
         for(Expense expense: this.expenseService.returnExpences()){
+            calendar.setTime(expense.getExpenseIssueDate());
+            if(calendar.get(Calendar.YEAR) == year){
+                output.add(expense);
+            }
         }
-        return null;
-    }
+        return output;
+        }
 
     @GetMapping("/expenses/{year}/{month}")
     public List<Expense> returnExpensesYearMonth(@PathVariable("year") String year, @PathVariable("month")
