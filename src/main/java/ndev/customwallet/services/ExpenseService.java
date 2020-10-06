@@ -43,5 +43,10 @@ public class ExpenseService {
         return this.expenseRepository.getById(id);
     }
 
+    public void saveExpense(Expense expense){
+
+        this.expenseRepository.save(expense);
+    }
+
 
 }

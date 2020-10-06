@@ -2,11 +2,12 @@ package ndev.customwallet.data;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ndev.customwallet.model.Expense;
+import ndev.customwallet.model.ExpenseType;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +24,7 @@ public class ExpenseRepository implements CustomDao<Expense> {
 
         List<Expense> expenses = new ArrayList<Expense>();
         try {
-            expenses = Arrays.asList(objectMapper.readValue(new File("data.json"), Expense[].class));
+            expenses = Arrays.asList(objectMapper.readValue(new File("src/main/resources/static/data.json"), Expense[].class));
 
         } catch (Exception exc){
             exc.printStackTrace();
@@ -36,7 +37,13 @@ public class ExpenseRepository implements CustomDao<Expense> {
     @Override
     public void save(Expense expense) {
         try {
-            objectMapper.writeValue(new File("data.json"),Expense.class);
+
+            File file = new File("src/main/resources/static/data.json");
+
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(file, true))); // append mode file writer
+
+            objectMapper.writeValue(out, expense);
+            //objectMapper.writeValue(new File("src/main/resources/static/data.json"),Expense.class);
         } catch (IOException e) {
             e.printStackTrace();
         }

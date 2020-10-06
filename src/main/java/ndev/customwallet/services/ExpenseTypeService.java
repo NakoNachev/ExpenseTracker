@@ -19,4 +19,25 @@ public class ExpenseTypeService {
     public List<ExpenseType> getAll(){
         return this.expenseTypeRepository.getAll();
     }
+
+    public ExpenseType findById(int id) {
+        ExpenseType target = null;
+        for (ExpenseType expenseType: this.getAll()){
+            if (expenseType.getExpenseTypeId() == id){
+                target = expenseType;
+            }
+        }
+        return target;
+    }
+
+    public ExpenseType findByExpenseTypeName(String name){
+        ExpenseType target = null;
+
+        for (ExpenseType expenseType: this.getAll()){
+            if (expenseType.getExpenseTypeName() == name){
+                target = expenseType;
+            }
+        }
+        return target;
+    }
 }

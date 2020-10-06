@@ -1,7 +1,7 @@
 package ndev.customwallet.controllers;
 
 
-import ndev.customwallet.data.ExpenseTypeRepository;
+
 import ndev.customwallet.model.Expense;
 import ndev.customwallet.model.ExpenseType;
 import ndev.customwallet.services.ExpenseService;
@@ -41,14 +41,22 @@ public class MainController {
         return expenseService.returnJson();
     }
 
+    /**
+     * Get expense by its id
+     * @param id
+     * @return
+     */
     @GetMapping("/expense/{id}")
     public Expense returnExpenseById(@PathVariable("id") int id){
         return expenseService.returnById(id);
     }
 
+
     @GetMapping("/expenses/{year}")
     public List<Expense> returnExpensesYear(@PathVariable("year") String year) {
 
+        for(Expense expense: this.expenseService.returnExpences()){
+        }
         return null;
     }
 
@@ -64,11 +72,23 @@ public class MainController {
 
         return null;
     }
-    @PostMapping("/expenses/{year}/{month}/{day}/{amount}/{expenseType}/{expenseDescription}")
+
+    @PostMapping("/expenses/{year}/{month}/{day}/{amount}/{expenseTypeName}/{expenseDescription}")
     public void addNewExpense(@PathVariable("year") int year, @PathVariable("month") int month, @PathVariable("day")
-            int day, @PathVariable("amount")BigDecimal amount, @PathVariable("expenseType")ExpenseType expenseType,
+            int day, @PathVariable("amount")BigDecimal amount, @PathVariable("expenseTypeName") String expenseTypeName,
                 @PathVariable("expenseDescription") String expenseDescription) {
 
+        int expenseTypeId = 0;
 
+        ExpenseType targetExpenseType = this.expenseTypeService.findByExpenseTypeName(expenseTypeName);
+        Expense targetExpense = Expense.builder()
+                .expenseId(this.expenseService.returnExpences().size()-1)
+                .expenseAmount(amount)
+                .expenseType(targetExpenseType)
+                .expenseDescription(expenseDescription)
+                .build();
+
+        this.expenseService.saveExpense(targetExpense);
+        //TODO: fix how it is displayed on the .json file
     }
 }
