@@ -1,9 +1,11 @@
 package ndev.customwallet.controllers;
 
 
+import ndev.customwallet.data.ExpenseTypeRepository;
 import ndev.customwallet.model.Expense;
 import ndev.customwallet.model.ExpenseType;
 import ndev.customwallet.services.ExpenseService;
+import ndev.customwallet.services.ExpenseTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +18,8 @@ public class MainController {
 
     @Autowired
     private ExpenseService expenseService;
+    @Autowired
+    private ExpenseTypeService expenseTypeService;
 
 
     @GetMapping("/expenses")
@@ -23,6 +27,12 @@ public class MainController {
 
        return expenseService.returnExpences();
 
+    }
+
+    @GetMapping("/expenseTypes")
+    public List<ExpenseType> returnExpenseTypes() {
+
+        return this.expenseTypeService.getAll();
     }
 
     @GetMapping("/expense")
