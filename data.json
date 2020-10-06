@@ -1,4 +1,4 @@
-{
+[{
   "expenseId": 5,
   "expenseType": {
                     "expenseTypeId": 3,
@@ -6,4 +6,14 @@
                     },
   "expenseAmount": 400,
   "expenseDescription": "test2"
-}
+},
+
+{
+  "expenseId": 6,
+  "expenseType": {
+    "expenseTypeId": 3,
+    "expenseTypeName": "test"
+  },
+  "expenseAmount": 400,
+  "expenseDescription": "test2"
+}]

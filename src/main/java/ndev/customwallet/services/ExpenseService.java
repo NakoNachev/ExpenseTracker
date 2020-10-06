@@ -39,5 +39,9 @@ public class ExpenseService {
         return jsonString;
     }
 
+    public Expense returnById(int id) {
+        return this.expenseRepository.getById(id);
+    }
+
 
 }

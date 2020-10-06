@@ -1,0 +1,47 @@
+[
+  {
+    "expenseTypeId": 1,
+    "expenseTypeName": "accomodation"
+  },
+
+
+  {
+    "expenseTypeId": 2,
+    "expenseTypeName": "food"
+  },
+
+
+  {
+    "expenseTypeId": 3,
+    "expenseTypeName": "telephone"
+  },
+
+  {
+    "expenseTypeId": 4,
+    "expenseTypeName": "internet"
+  },
+
+  {
+    "expenseTypeId": 5,
+    "expenseTypeName": "taxes"
+  },
+
+  {
+    "expenseTypeId": 6,
+    "expenseTypeName": "going out"
+  },
+
+
+  {
+    "expenseTypeId": 7,
+    "expenseTypeName": "subscriptions"
+  },
+
+
+  {
+    "expenseTypeId": 8,
+    "expenseTypeName": "other"
+  }
+
+
+]

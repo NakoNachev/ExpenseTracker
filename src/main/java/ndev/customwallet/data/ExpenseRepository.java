@@ -23,7 +23,7 @@ public class ExpenseRepository implements CustomDao<Expense> {
 
         List<Expense> expenses = new ArrayList<Expense>();
         try {
-            expenses = Arrays.asList(objectMapper.readValue(new File("data.json"), Expense.class));
+            expenses = Arrays.asList(objectMapper.readValue(new File("data.json"), Expense[].class));
 
         } catch (Exception exc){
             exc.printStackTrace();
@@ -35,14 +35,11 @@ public class ExpenseRepository implements CustomDao<Expense> {
 
     @Override
     public void save(Expense expense) {
-
-
         try {
             objectMapper.writeValue(new File("data.json"),Expense.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
@@ -52,7 +49,16 @@ public class ExpenseRepository implements CustomDao<Expense> {
 
     @Override
     public Expense getById(int id) {
-        return null;
+
+        Expense target = null;
+        List<Expense> expenses = this.getAll();
+
+        for(Expense targetExpense: expenses){
+            if (targetExpense.getExpenseId() == id){
+                target = targetExpense;
+            }
+        }
+        return target;
     }
 
     @Override

@@ -31,6 +31,11 @@ public class MainController {
         return expenseService.returnJson();
     }
 
+    @GetMapping("/expense/{id}")
+    public Expense returnExpenseById(@PathVariable("id") int id){
+        return expenseService.returnById(id);
+    }
+
     @GetMapping("/expenses/{year}")
     public List<Expense> returnExpensesYear(@PathVariable("year") String year) {
 
