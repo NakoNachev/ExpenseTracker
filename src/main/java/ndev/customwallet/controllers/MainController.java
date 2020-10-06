@@ -70,16 +70,35 @@ public class MainController {
         }
 
     @GetMapping("/expenses/{year}/{month}")
-    public List<Expense> returnExpensesYearMonth(@PathVariable("year") String year, @PathVariable("month")
-                                                 String month) {
+    public List<Expense> returnExpensesYearMonth(@PathVariable("year") int year, @PathVariable("month")
+                                                 int month) {
+        List<Expense> output = new ArrayList<Expense>();
+        for (Expense expense: this.returnExpensesYear(year)){
 
-        return null;
+            calendar.setTime(expense.getExpenseIssueDate());
+            System.out.println(calendar.get(Calendar.MONTH));
+            if(calendar.get(Calendar.MONTH)+1 == month){    // needs +1 because it is 1 behind
+                output.add(expense);
+            }
+
+        }
+        return output;
     }
     @GetMapping("/expenses/{year}/{month}/{day}")
-    public List<Expense> returnExpensesYearMonthDay(@PathVariable("year") String year, @PathVariable("month")
-            String month, @PathVariable("day") String day) {
+    public List<Expense> returnExpensesYearMonthDay(@PathVariable("year") int year, @PathVariable("month")
+            int month, @PathVariable("day") int day) {
 
-        return null;
+        List<Expense> output = new ArrayList<Expense>();
+        for (Expense expense: this.returnExpensesYearMonth(year,month)){
+            calendar.setTime(expense.getExpenseIssueDate());
+            System.out.println(calendar.get(Calendar.DAY_OF_MONTH));
+            if(calendar.get(Calendar.DAY_OF_MONTH) == day){
+                output.add(expense);
+            }
+
+        }
+        return output;
+
     }
 
     @PostMapping("/expenses/{year}/{month}/{day}/{amount}/{expenseTypeName}/{expenseDescription}")
