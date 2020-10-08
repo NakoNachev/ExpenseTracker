@@ -6,9 +6,13 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import ndev.customwallet.data.ExpenseRepository;
 import ndev.customwallet.data.ExpenseTypeRepository;
 import ndev.customwallet.model.Expense;
+import ndev.customwallet.model.ExpenseType;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ExpenseService {
@@ -48,5 +52,31 @@ public class ExpenseService {
         this.expenseRepository.save(expense);
     }
 
+    public Map<ExpenseType, BigDecimal> getMapperExpenseTypeValue() {
+
+        return this.expenseRepository.getMapperExpenseTypeValueAll();
+    }
+
+    public Map<ExpenseType,BigDecimal> getMapperExpenseTypeValuePeriod(List<Expense> expenseList){
+
+        return this.expenseRepository.getMapperExpenseTypeValuePeriod(expenseList);
+    }
+
+    public Map<String,BigDecimal> getMapperSum(Map<ExpenseType,BigDecimal> mapper) {
+
+        Map<String,BigDecimal> newMapper = new HashMap<>();
+
+        for(Map.Entry<ExpenseType, BigDecimal> entry : mapper.entrySet()){
+
+            if (newMapper.containsKey(entry.getKey().getExpenseTypeName())){
+                newMapper.put(entry.getKey().getExpenseTypeName(),newMapper.get(entry.getKey().getExpenseTypeName()).add(entry.getValue()));
+            }
+            else {
+                newMapper.put(entry.getKey().getExpenseTypeName(),entry.getValue());
+            }
+
+        }
+        return newMapper;
+    }
 
 }

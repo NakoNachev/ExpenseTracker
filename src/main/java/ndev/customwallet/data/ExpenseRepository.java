@@ -7,11 +7,9 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.io.*;
+import java.math.BigDecimal;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Repository
 public class ExpenseRepository implements CustomDao<Expense> {
@@ -71,6 +69,33 @@ public class ExpenseRepository implements CustomDao<Expense> {
     @Override
     public void update(Expense expense) {
 
+    }
+
+    /**
+     * Returns mapper with the combinations of expensetype and amount
+     * for the whole period.
+     * @return
+     */
+    public Map<ExpenseType, BigDecimal> getMapperExpenseTypeValueAll(){
+        List<Expense> expenseList = this.getAll();
+        Map<ExpenseType,BigDecimal> map = new HashMap<>();
+
+        for(Expense expense: expenseList){
+            map.put(expense.getExpenseType(),expense.getExpenseAmount());
+        }
+
+        return map;
+    }
+
+    public Map<ExpenseType,BigDecimal> getMapperExpenseTypeValuePeriod(List<Expense> periodList){
+
+        Map<ExpenseType,BigDecimal> map = null;
+
+        for(Expense expense: periodList){
+            map.put(expense.getExpenseType(),expense.getExpenseAmount());
+        }
+
+        return map;
     }
 }
 
