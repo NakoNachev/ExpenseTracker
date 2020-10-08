@@ -1,0 +1,4 @@
+expenseId,expenseType/expenseTypeId,expenseType/expenseTypeName,expenseAmount,expenseIssueDate,expenseDescription
+5,3,test,400,2020-10-05,test2
+6,3,test,400,2019-10-05,test2
+7,3,test,500,2018-10-05,test3

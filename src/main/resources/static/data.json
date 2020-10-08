@@ -1,13 +1,14 @@
-[{
-  "expenseId": 5,
-  "expenseType": {
-    "expenseTypeId": 3,
-    "expenseTypeName": "test"
+[
+  {
+    "expenseId": 5,
+    "expenseType": {
+      "expenseTypeId": 3,
+      "expenseTypeName": "test"
+    },
+    "expenseAmount": 400,
+    "expenseIssueDate": "2020-10-05",
+    "expenseDescription": "test2"
   },
-  "expenseAmount": 400,
-  "expenseIssueDate": "2020-10-05",
-  "expenseDescription": "test2"
-},
   {
     "expenseId": 6,
     "expenseType": {
@@ -17,5 +18,15 @@
     "expenseAmount": 400,
     "expenseIssueDate": "2019-10-05",
     "expenseDescription": "test2"
+  },
+  {
+    "expenseId": 7,
+    "expenseType": {
+      "expenseTypeId": 3,
+      "expenseTypeName": "test"
+    },
+    "expenseAmount": 500,
+    "expenseIssueDate": "2018-10-05",
+    "expenseDescription": "test3"
   }
 ]
