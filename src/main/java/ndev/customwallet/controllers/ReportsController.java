@@ -51,10 +51,26 @@ public class ReportsController {
     }
 
     @GetMapping("/{year}/{month}")
-    public String getReportForYearMonth(@PathVariable("year") int year,
+    public ObjectNode getReportForYearMonth(@PathVariable("year") int year,
                                         @PathVariable("month") int month){
 
-        return null;
+        List<Expense> expenseList = new ArrayList<Expense>();
+        for(Expense expense: this.expenseService.returnExpences()){
+            calendar.setTime(expense.getExpenseIssueDate());
+            if(calendar.get(Calendar.YEAR) == year && calendar.get(Calendar.MONTH)+1 == month){
+                expenseList.add(expense);
+            }
+        }
+
+        Map<ExpenseType, Double> mapper = this.expenseService.getMapperExpenseTypeValuePeriod(expenseList);
+
+        this.report = Report.builder()
+                .expenseList(expenseList)
+                .expensetypeValueMapper(mapper)
+                .build();
+
+        return this.report.generate(this.expenseService.getMapperSum(mapper));
+
     }
 
 

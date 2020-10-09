@@ -77,6 +77,18 @@
     },
     "expenseAmount": 20,
     "expenseIssueDate": "2019-10-08",
-    "expenseDescription": "Abendessen mit Yo"
+    "expenseDescription": "test1"
+  },
+
+  {
+    "expenseId": 9,
+    "expenseType": {
+      "expenseTypeId": 6,
+      "expenseTypeName": "going out"
+    },
+    "expenseAmount": 20,
+    "expenseIssueDate": "2020-09-08",
+    "expenseDescription": "test2"
   }
+
 ]
