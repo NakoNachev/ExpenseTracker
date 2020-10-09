@@ -18,14 +18,14 @@ public class Report {
 
     //private int reportId;
     private List<Expense> expenseList;
-    private Map<ExpenseType, BigDecimal> expensetypeValueMapper;
+    private Map<ExpenseType, Double> expensetypeValueMapper;
 
-    public ObjectNode generate(Map<String,BigDecimal> listMap){
+    public ObjectNode generate(Map<String,Double> listMap){
 
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode node = mapper.createObjectNode();
 
-        for(Map.Entry<String, BigDecimal> entry : listMap.entrySet()){
+        for(Map.Entry<String, Double> entry : listMap.entrySet()){
             node.put(entry.getKey(),entry.getValue());
         }
 

@@ -1,4 +1,8 @@
 expenseId,expenseType/expenseTypeId,expenseType/expenseTypeName,expenseAmount,expenseIssueDate,expenseDescription
-5,3,test,400,2020-10-05,test2
-6,3,test,400,2019-10-05,test2
-7,3,test,500,2018-10-05,test3
+1,8,"others",16,2020-10-03,"t-shirt axitera"
+2,8,"others",20,2020-10-03,"fitness"
+3,3,"telephone",7.79,2020-10-05,"Aldi Talk"
+3,2,"food",50,2020-10-06,"Einkaufen Aldi"
+3,2,"food",7.52,2020-10-05,"Mittagsessen Axitera"
+3,2,"food",4.70,2020-10-06,"Mittagsessen Axitera"
+3,6,"going out",20,2020-10-08,"Abendessen mit Yo"

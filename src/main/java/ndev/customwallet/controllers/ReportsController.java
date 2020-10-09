@@ -31,7 +31,7 @@ public class ReportsController {
     public ObjectNode getReportForYear(@PathVariable("year") int year){
 
         List<Expense> expenseList = this.expenseService.returnExpences();
-        Map<ExpenseType, BigDecimal> mapper = this.expenseService.getMapperExpenseTypeValue();
+        Map<ExpenseType, Double> mapper = this.expenseService.getMapperExpenseTypeValue();
 
         this.report = Report.builder()
                         .expenseList(expenseList)

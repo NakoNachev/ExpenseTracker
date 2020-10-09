@@ -27,7 +27,7 @@ public class ExpenseRepository implements CustomDao<Expense> {
         } catch (Exception exc){
             exc.printStackTrace();
         }
-
+        System.out.println("Expenses size is" + expenses.size());
         return expenses;
 
     }
@@ -76,20 +76,36 @@ public class ExpenseRepository implements CustomDao<Expense> {
      * for the whole period.
      * @return
      */
-    public Map<ExpenseType, BigDecimal> getMapperExpenseTypeValueAll(){
+    public Map<ExpenseType, Double> getMapperExpenseTypeValueAll(){
         List<Expense> expenseList = this.getAll();
-        Map<ExpenseType,BigDecimal> map = new HashMap<>();
+        Map<ExpenseType, Double> map = new HashMap<>();
 
         for(Expense expense: expenseList){
-            map.put(expense.getExpenseType(),expense.getExpenseAmount());
-        }
+            if(map.containsKey(expense.getExpenseType())){
+                map.replace(expense.getExpenseType(),map.get(expense.getExpenseType()) + Double.valueOf(expense.getExpenseAmount()));
+                System.out.println("Inside contains key");
+                for(ExpenseType key: map.keySet()){
+                    System.out.println(key.getExpenseTypeName() + map.get(key));
+                }
+            }
+            else {
+                map.put(expense.getExpenseType(), Double.valueOf(expense.getExpenseAmount()));
+                System.out.println("Outside contains key");
+                System.out.println("Size of ma now is " + map.size());
+                for (ExpenseType key : map.keySet()) {
+                    System.out.println(key.getExpenseTypeName() + map.get(key));
+                }
+            }
 
+
+        }
+        System.out.println("Mapper has size" + map.size());
         return map;
     }
 
-    public Map<ExpenseType,BigDecimal> getMapperExpenseTypeValuePeriod(List<Expense> periodList){
+    public Map<ExpenseType,Double> getMapperExpenseTypeValuePeriod(List<Expense> periodList){
 
-        Map<ExpenseType,BigDecimal> map = null;
+        Map<ExpenseType,Double> map = null;
 
         for(Expense expense: periodList){
             map.put(expense.getExpenseType(),expense.getExpenseAmount());

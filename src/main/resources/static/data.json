@@ -1,32 +1,72 @@
 [
   {
-    "expenseId": 5,
+    "expenseId": 1,
+    "expenseType": {
+      "expenseTypeId": 8,
+      "expenseTypeName": "others"
+    },
+    "expenseAmount": 16.00,
+    "expenseIssueDate": "2020-10-03",
+    "expenseDescription": "t-shirt axitera"
+  },
+  {
+    "expenseId": 2,
+    "expenseType": {
+      "expenseTypeId": 8,
+      "expenseTypeName": "others"
+    },
+    "expenseAmount": 20.00,
+    "expenseIssueDate": "2020-10-03",
+    "expenseDescription": "fitness"
+  },
+  {
+    "expenseId": 3,
     "expenseType": {
       "expenseTypeId": 3,
-      "expenseTypeName": "test"
+      "expenseTypeName": "telephone"
     },
-    "expenseAmount": 400,
+    "expenseAmount": 7.79,
     "expenseIssueDate": "2020-10-05",
-    "expenseDescription": "test2"
+    "expenseDescription": "Aldi Talk"
+  },
+  {
+    "expenseId": 4,
+    "expenseType": {
+      "expenseTypeId": 2,
+      "expenseTypeName": "food"
+    },
+    "expenseAmount": 50,
+    "expenseIssueDate": "2020-10-06",
+    "expenseDescription": "Einkaufen Aldi"
+  },
+  {
+    "expenseId": 5,
+    "expenseType": {
+      "expenseTypeId": 2,
+      "expenseTypeName": "food"
+    },
+    "expenseAmount": 7.52,
+    "expenseIssueDate": "2020-10-05",
+    "expenseDescription": "Mittagsessen Axitera"
   },
   {
     "expenseId": 6,
     "expenseType": {
-      "expenseTypeId": 3,
-      "expenseTypeName": "test"
+      "expenseTypeId": 2,
+      "expenseTypeName": "food"
     },
-    "expenseAmount": 400,
-    "expenseIssueDate": "2019-10-05",
-    "expenseDescription": "test2"
+    "expenseAmount": 4.7,
+    "expenseIssueDate": "2020-10-06",
+    "expenseDescription": "Mittagsessen Axitera"
   },
   {
     "expenseId": 7,
     "expenseType": {
-      "expenseTypeId": 3,
-      "expenseTypeName": "test"
+      "expenseTypeId": 6,
+      "expenseTypeName": "going out"
     },
-    "expenseAmount": 500,
-    "expenseIssueDate": "2018-10-05",
-    "expenseDescription": "test3"
+    "expenseAmount": 20,
+    "expenseIssueDate": "2020-10-08",
+    "expenseDescription": "Abendessen mit Yo"
   }
 ]

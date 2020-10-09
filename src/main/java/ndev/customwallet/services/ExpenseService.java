@@ -52,27 +52,29 @@ public class ExpenseService {
         this.expenseRepository.save(expense);
     }
 
-    public Map<ExpenseType, BigDecimal> getMapperExpenseTypeValue() {
+    public Map<ExpenseType, Double> getMapperExpenseTypeValue() {
 
         return this.expenseRepository.getMapperExpenseTypeValueAll();
     }
 
-    public Map<ExpenseType,BigDecimal> getMapperExpenseTypeValuePeriod(List<Expense> expenseList){
+    public Map<ExpenseType,Double> getMapperExpenseTypeValuePeriod(List<Expense> expenseList){
 
         return this.expenseRepository.getMapperExpenseTypeValuePeriod(expenseList);
     }
 
-    public Map<String,BigDecimal> getMapperSum(Map<ExpenseType,BigDecimal> mapper) {
+    public Map<String,Double> getMapperSum(Map<ExpenseType,Double> mapper) {
 
-        Map<String,BigDecimal> newMapper = new HashMap<>();
+        Map<String,Double> newMapper = new HashMap<>();
 
-        for(Map.Entry<ExpenseType, BigDecimal> entry : mapper.entrySet()){
+        for(Map.Entry<ExpenseType, Double> entry : mapper.entrySet()){
 
             if (newMapper.containsKey(entry.getKey().getExpenseTypeName())){
-                newMapper.put(entry.getKey().getExpenseTypeName(),newMapper.get(entry.getKey().getExpenseTypeName()).add(entry.getValue()));
+                newMapper.replace(entry.getKey().getExpenseTypeName(),newMapper.get(entry.getKey().getExpenseTypeName()) + (entry.getValue()));
+                System.out.println("updated");
             }
             else {
                 newMapper.put(entry.getKey().getExpenseTypeName(),entry.getValue());
+                System.out.println("In else method");
             }
 
         }

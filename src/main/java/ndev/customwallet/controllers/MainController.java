@@ -103,7 +103,7 @@ public class MainController {
 
     @PostMapping("/expenses/{year}/{month}/{day}/{amount}/{expenseTypeName}/{expenseDescription}")
     public void addNewExpense(@PathVariable("year") int year, @PathVariable("month") int month, @PathVariable("day")
-            int day, @PathVariable("amount")BigDecimal amount, @PathVariable("expenseTypeName") String expenseTypeName,
+            int day, @PathVariable("amount")Double amount, @PathVariable("expenseTypeName") String expenseTypeName,
                 @PathVariable("expenseDescription") String expenseDescription) {
 
         int expenseTypeId = 0;

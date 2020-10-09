@@ -19,7 +19,7 @@ public class Expense {
     private int expenseId;
     @Autowired
     private ExpenseType expenseType;
-    private BigDecimal expenseAmount;
+    private double expenseAmount;
     private Date expenseIssueDate;
     private String expenseDescription;
 
