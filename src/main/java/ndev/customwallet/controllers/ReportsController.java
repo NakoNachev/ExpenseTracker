@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/report")
@@ -26,12 +24,22 @@ public class ReportsController {
 
     private Report report;
 
+    private Calendar calendar = Calendar.getInstance();
+
 
     @GetMapping("/{year}")
     public ObjectNode getReportForYear(@PathVariable("year") int year){
 
-        List<Expense> expenseList = this.expenseService.returnExpences();
-        Map<ExpenseType, Double> mapper = this.expenseService.getMapperExpenseTypeValue();
+        //List<Expense> expenseList = this.expenseService.returnExpences();
+        //Map<ExpenseType, Double> mapper = this.expenseService.getMapperExpenseTypeValue();
+        List<Expense> expenseList = new ArrayList<Expense>();
+        for(Expense expense: this.expenseService.returnExpences()){
+            calendar.setTime(expense.getExpenseIssueDate());
+            if(calendar.get(Calendar.YEAR) == year){
+                expenseList.add(expense);
+            }
+        }
+        Map<ExpenseType, Double> mapper = this.expenseService.getMapperExpenseTypeValuePeriod(expenseList);
 
         this.report = Report.builder()
                         .expenseList(expenseList)

@@ -24,7 +24,7 @@ public class ExpenseRepository implements CustomDao<Expense> {
         try {
             expenses = Arrays.asList(objectMapper.readValue(new File("src/main/resources/static/data.json"), Expense[].class));
 
-        } catch (Exception exc){
+        } catch (Exception exc) {
             exc.printStackTrace();
         }
         System.out.println("Expenses size is" + expenses.size());
@@ -58,8 +58,8 @@ public class ExpenseRepository implements CustomDao<Expense> {
         Expense target = null;
         List<Expense> expenses = this.getAll();
 
-        for(Expense targetExpense: expenses){
-            if (targetExpense.getExpenseId() == id){
+        for (Expense targetExpense : expenses) {
+            if (targetExpense.getExpenseId() == id) {
                 target = targetExpense;
             }
         }
@@ -74,21 +74,21 @@ public class ExpenseRepository implements CustomDao<Expense> {
     /**
      * Returns mapper with the combinations of expensetype and amount
      * for the whole period.
+     *
      * @return
      */
-    public Map<ExpenseType, Double> getMapperExpenseTypeValueAll(){
+    public Map<ExpenseType, Double> getMapperExpenseTypeValueAll() {
         List<Expense> expenseList = this.getAll();
         Map<ExpenseType, Double> map = new HashMap<>();
 
-        for(Expense expense: expenseList){
-            if(map.containsKey(expense.getExpenseType())){
-                map.replace(expense.getExpenseType(),map.get(expense.getExpenseType()) + Double.valueOf(expense.getExpenseAmount()));
+        for (Expense expense : expenseList) {
+            if (map.containsKey(expense.getExpenseType())) {
+                map.replace(expense.getExpenseType(), map.get(expense.getExpenseType()) + Double.valueOf(expense.getExpenseAmount()));
                 System.out.println("Inside contains key");
-                for(ExpenseType key: map.keySet()){
+                for (ExpenseType key : map.keySet()) {
                     System.out.println(key.getExpenseTypeName() + map.get(key));
                 }
-            }
-            else {
+            } else {
                 map.put(expense.getExpenseType(), Double.valueOf(expense.getExpenseAmount()));
                 System.out.println("Outside contains key");
                 System.out.println("Size of ma now is " + map.size());
@@ -103,14 +103,21 @@ public class ExpenseRepository implements CustomDao<Expense> {
         return map;
     }
 
-    public Map<ExpenseType,Double> getMapperExpenseTypeValuePeriod(List<Expense> periodList){
+    public Map<ExpenseType, Double> getMapperExpenseTypeValuePeriod(List<Expense> periodList) {
 
-        Map<ExpenseType,Double> map = null;
+        Map<ExpenseType, Double> map = new HashMap<>();
 
-        for(Expense expense: periodList){
-            map.put(expense.getExpenseType(),expense.getExpenseAmount());
+        for (Expense expense : periodList) {
+            if (map.containsKey(expense.getExpenseType())) {
+                map.replace(expense.getExpenseType(), map.get(expense.getExpenseType()) + Double.valueOf(expense.getExpenseAmount()));
+                System.out.println("Inside contains key");
+                for (ExpenseType key : map.keySet()) {
+                    System.out.println(key.getExpenseTypeName() + map.get(key));
+                }
+            } else {
+                map.put(expense.getExpenseType(), Double.valueOf(expense.getExpenseAmount()));
+            }
         }
-
         return map;
     }
 }
