@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.math.BigDecimal;
 import java.util.*;
 
+/**
+ * Controller responsible for pulling reports base on expense type/amount
+ * for different months/years.
+ */
 @RestController
 @RequestMapping("/api/report")
 public class ReportsController {
