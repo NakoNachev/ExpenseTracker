@@ -13,5 +13,8 @@ public class Analysis {
 
     private List<Report> reportsList;
 
-    public ObjectNode returnAvgByType()
+    public ObjectNode returnAvgByType() {
+
+        return null;
+    }
 }
